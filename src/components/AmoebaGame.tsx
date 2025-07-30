@@ -1,13 +1,13 @@
 // AmoebaGame.tsx
 
 import React, { useEffect, useRef, useState } from "react";
-import Matter from "matter-js";
+import Matter, { Composite, Body, Engine } from "matter-js";
 
 type FoodType = "red" | "blue" | "yellow" | "green";
 
 interface FoodCell {
   id: string;
-  composite: Matter.Composite;
+  composite: Composite;
   type: FoodType;
   color: string;
   size: number;
@@ -23,7 +23,7 @@ interface FoodCell {
 }
 
 interface Player {
-  composite: Matter.Composite;
+  composite: Composite;
   size: number;
   diet: Record<FoodType, number>;
   experience: number;
