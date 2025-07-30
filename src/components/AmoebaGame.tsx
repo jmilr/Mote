@@ -486,12 +486,12 @@ export default function AmoebaGame() {
       }
 
       setScore(
-        playerRef.current?.diet.red ??
-          0 + playerRef.current?.diet.blue ??
-          0 + playerRef.current?.diet.yellow ??
-          0 + playerRef.current?.diet.green ??
-          0,
+        (playerRef.current?.diet?.red ?? 0) +
+        (playerRef.current?.diet?.blue ?? 0) +
+        (playerRef.current?.diet?.yellow ?? 0) +
+        (playerRef.current?.diet?.green ?? 0)
       );
+
 
       setTimeout(logicLoop, 16);
     }
