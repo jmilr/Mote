@@ -100,6 +100,7 @@ function createFoodCell(
       restitution: 0.8,
       render: { fillStyle: FOOD_COLORS[type] },
     },
+    {},
   );
   return {
     id: Math.random().toString(36).slice(2),
@@ -138,6 +139,7 @@ function createPlayer(
       restitution: 0.8,
       render: { fillStyle: "#fff" },
     },
+    {},
   );
   return {
     composite,
