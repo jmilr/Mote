@@ -1,65 +1,70 @@
 // AmoebaGame.tsx
 
-import React, { useEffect, useRef, useState } from "react";
-import Matter, { Composite, Body, Engine } from "matter-js";
+import React, { useEffect, useRef, useState } from “react”;
+import Matter from “matter-js”;
 
-type FoodType = "red" | "blue" | "yellow" | "green";
+type FoodType = “red” | “blue” | “yellow” | “green”;
+
+// Use ‘any’ for all Matter.js types
+type Composite = any;
+type Body = any;
+type Engine = any;
 
 interface FoodCell {
-  id: string;
-  composite: Composite;
-  type: FoodType;
-  color: string;
-  size: number;
-  age: number;
-  energy: number;
-  intelligence: number;
-  evolutionLevel: number;
-  canEat: boolean;
-  aggressiveness: number;
-  reproductionCooldown: number;
-  generation: number;
-  swarmId: string;
+id: string;
+composite: Composite;
+type: FoodType;
+color: string;
+size: number;
+age: number;
+energy: number;
+intelligence: number;
+evolutionLevel: number;
+canEat: boolean;
+aggressiveness: number;
+reproductionCooldown: number;
+generation: number;
+swarmId: string;
 }
 
 interface Player {
-  composite: Composite;
-  size: number;
-  diet: Record<FoodType, number>;
-  experience: number;
-  totalKills: number;
-  tier: number;
-  isAscended: boolean;
+composite: Composite;
+size: number;
+diet: Record<FoodType, number>;
+experience: number;
+totalKills: number;
+tier: number;
+isAscended: boolean;
 }
 
 const FOOD_COLORS: Record<FoodType, string> = {
-  red: "#ff4444",
-  blue: "#44aaff",
-  yellow: "#ffe066",
-  green: "#44ff88",
+red: “#ff4444”,
+blue: “#44aaff”,
+yellow: “#ffe066”,
+green: “#44ff88”,
 };
 
 const FOOD_SHAPES: Record<FoodType, number> = {
-  red: 6,
-  blue: 8,
-  yellow: 7,
-  green: 9,
+red: 6,
+blue: 8,
+yellow: 7,
+green: 9,
 };
 
-const CANVAS_BG = "#181818";
+const CANVAS_BG = “#181818”;
 
-function centroid(bodies: Matter.Body[]) {
-  let x = 0,
-    y = 0;
-  for (const b of bodies) {
-    x += b.position.x;
-    y += b.position.y;
-  }
-  return { x: x / bodies.length, y: y / bodies.length };
+function centroid(bodies: Body[]) {
+let x = 0,
+y = 0;
+for (const b of bodies) {
+x += b.position.x;
+y += b.position.y;
+}
+return { x: x / bodies.length, y: y / bodies.length };
 }
 
 function random(min: number, max: number) {
-  return Math.random() * (max - min) + min;
+return Math.random() * (max - min) + min;
 }
 
 function distance(
