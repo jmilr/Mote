@@ -1,8 +1,8 @@
 {
-  "name": "playpatch",
+  "name": "mote",
   "version": "1.0.0",
   "private": true,
-  "description": "A musical touch playground built with React, TypeScript, and Tone.js",
+  "description": "A blob game.",
   "main": "src/index.tsx",
   "scripts": {
     "start": "react-scripts start",
@@ -12,14 +12,14 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://jmilr.github.io/PlayPatch",
+  "homepage": "https://jmilr.github.io/Mote",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tone": "^15.1.0",
+    "matter-js": "^0.19.0",
     "ajv": "6.12.6",
     "ajv-keywords": "3.5.2"
-  },
+  }
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.7",
