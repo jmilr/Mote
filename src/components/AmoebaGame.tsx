@@ -1,65 +1,65 @@
 // AmoebaGame.tsx
 
 import React, { useEffect, useRef, useState } from "react";
-import Matter from 'matter-js';
+import Matter, { Composite, Body, Engine } from "matter-js";
 
 type FoodType = "red" | "blue" | "yellow" | "green";
 
 interface FoodCell {
-id: string;
-composite: Composite;
-type: FoodType;
-color: string;
-size: number;
-age: number;
-energy: number;
-intelligence: number;
-evolutionLevel: number;
-canEat: boolean;
-aggressiveness: number;
-reproductionCooldown: number;
-generation: number;
-swarmId: string;
+  id: string;
+  composite: Composite;
+  type: FoodType;
+  color: string;
+  size: number;
+  age: number;
+  energy: number;
+  intelligence: number;
+  evolutionLevel: number;
+  canEat: boolean;
+  aggressiveness: number;
+  reproductionCooldown: number;
+  generation: number;
+  swarmId: string;
 }
 
 interface Player {
-composite: Composite;
-size: number;
-diet: Record<FoodType, number>;
-experience: number;
-totalKills: number;
-tier: number;
-isAscended: boolean;
+  composite: Composite;
+  size: number;
+  diet: Record<FoodType, number>;
+  experience: number;
+  totalKills: number;
+  tier: number;
+  isAscended: boolean;
 }
 
 const FOOD_COLORS: Record<FoodType, string> = {
-red: "#ff4444",
-blue: "#44aaff",
-yellow: "#ffe066",
-green: "#44ff88",
+  red: "#ff4444",
+  blue: "#44aaff",
+  yellow: "#ffe066",
+  green: "#44ff88",
 };
 
 const FOOD_SHAPES: Record<FoodType, number> = {
-red: 6,
-blue: 8,
-yellow: 7,
-green: 9,
+  red: 6,
+  blue: 8,
+  yellow: 7,
+  green: 9,
 };
 
 const CANVAS_BG = "#181818";
 
 function centroid(bodies: Body[]) {
-let x = 0,
-y = 0;
-for (const b of bodies) {
-x += b.position.x;
-y += b.position.y;
-}
-return { x: x / bodies.length, y: y / bodies.length };
+  let x = 0,
+    y = 0;
+  for (const b of bodies) {
+    x += b.position.x;
+    y += b.position.y;
+  }
+  return { x: x / bodies.length, y: y / bodies.length };
 }
 
 function random(min: number, max: number) {
-return Math.random() * (max - min) + min;
+  return Math.random() * (max - min) + min;
 }
 
 function distance(
@@ -67,6 +67,11 @@ function distance(
   b: { x: number; y: number },
 ) {
   return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+}
+
+function normalize(v: { x: number; y: number }) {
+  const len = Math.sqrt(v.x * v.x + v.y * v.y);
+  return len === 0 ? { x: 0, y: 0 } : { x: v.x / len, y: v.y / len };
 }
 
 function createFoodCell(
@@ -150,7 +155,7 @@ export default function AmoebaGame() {
   const [score, setScore] = useState(0);
 
   // Physics engine and world refs
-  const engineRef = useRef<Matter.Engine>();
+  const engineRef = useRef<Engine>();
   const playerRef = useRef<Player>();
   const foodRef = useRef<FoodCell[]>([]);
   const [canvasSize, setCanvasSize] = useState({
@@ -511,7 +516,7 @@ export default function AmoebaGame() {
       // Draw food
       for (const food of foodRef.current) {
         const points = food.composite.bodies.map(
-          (b) => b.position,
+          (b: Body) => b.position,
         );
         ctx.save();
         ctx.beginPath();
@@ -529,7 +534,7 @@ export default function AmoebaGame() {
       // Draw player
       if (playerRef.current) {
         const points = playerRef.current.composite.bodies.map(
-          (b) => b.position,
+          (b: Body) => b.position,
         );
         ctx.save();
         ctx.beginPath();
