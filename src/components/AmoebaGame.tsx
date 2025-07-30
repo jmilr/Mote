@@ -1,7 +1,7 @@
 // AmoebaGame.tsx
 
 import React, { useEffect, useRef, useState } from "react";
-import Matter from "matter-js";
+import * as Matter from 'matter-js';
 
 type FoodType = "red" | "blue" | "yellow" | "green";
 
