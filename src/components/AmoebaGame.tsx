@@ -1,14 +1,9 @@
 // AmoebaGame.tsx
 
 import React, { useEffect, useRef, useState } from "react";
-import * as Matter from 'matter-js';
+import Matter from 'matter-js';
 
 type FoodType = "red" | "blue" | "yellow" | "green";
-
-// Use ‘any’ for all Matter.js types
-type Composite = any;
-type Body = any;
-type Engine = any;
 
 interface FoodCell {
 id: string;
