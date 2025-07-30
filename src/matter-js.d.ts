@@ -1,5 +1,6 @@
 // src/matter-js.d.ts
 declare module 'matter-js' {
+  // This creates a namespace for types, so you can use Matter.Composite, etc.
   export namespace Matter {
     type Composite = any;
     type Engine = any;
@@ -14,6 +15,7 @@ declare module 'matter-js' {
     type Vector = any;
     // Add more as needed
   }
+  // This is for the default import
   const Matter: any;
   export default Matter;
 }
