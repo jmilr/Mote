@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Mote/static/css/main.38bf393a.css",
+    "main.js": "/Mote/static/js/main.430ea070.js",
+    "index.html": "/Mote/index.html",
+    "main.38bf393a.css.map": "/Mote/static/css/main.38bf393a.css.map",
+    "main.430ea070.js.map": "/Mote/static/js/main.430ea070.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38bf393a.css",
+    "static/js/main.430ea070.js"
+  ]
+}
