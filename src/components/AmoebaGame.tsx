@@ -1,9 +1,9 @@
 // AmoebaGame.tsx
 
-import React, { useEffect, useRef, useState } from “react”;
-import Matter from “matter-js”;
+import React, { useEffect, useRef, useState } from "react";
+import Matter from "matter-js";
 
-type FoodType = “red” | “blue” | “yellow” | “green”;
+type FoodType = "red" | "blue" | "yellow" | "green";
 
 // Use ‘any’ for all Matter.js types
 type Composite = any;
@@ -38,10 +38,10 @@ isAscended: boolean;
 }
 
 const FOOD_COLORS: Record<FoodType, string> = {
-red: “#ff4444”,
-blue: “#44aaff”,
-yellow: “#ffe066”,
-green: “#44ff88”,
+red: "#ff4444",
+blue: "#44aaff",
+yellow: "#ffe066",
+green: "#44ff88",
 };
 
 const FOOD_SHAPES: Record<FoodType, number> = {
@@ -51,7 +51,7 @@ yellow: 7,
 green: 9,
 };
 
-const CANVAS_BG = “#181818”;
+const CANVAS_BG = "#181818";
 
 function centroid(bodies: Body[]) {
 let x = 0,
